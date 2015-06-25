@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="drinksApp">
+  <head>
+    <link href='http://fonts.googleapis.com/css?family=Cinzel+Decorative:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Josefin+Sans:300,400' rel='stylesheet' type='text/css'>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Angular anyone?</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.3.0/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="custom.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="controllers.js"></script>
+    
+  </head>
+  <body ng-controller="DrinkListCtrl">
+    <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12">
+            <div class="welcome img-responsive" alt="welcome">
+              <br><br>
+              <h1>Lloyd's Bar</h1>
+            </div>
+          
+            <div class="intro animated fadeIn">
+              <h3>Our favorite cocktails are below, but we're always adding to the list.<br>Please click on the images to watch the drinks being made.</h3> 
+              <br><br>
+            </div>
+            <div class="search">
+            Search by alcohol or drink name: <input ng-model="query" type="text" placeholder="vodka, whiskey or rum">
+            <br>
+            Sort:
+            <select ng-model="orderProp">
+              <option value="name">alphabetically</option>
+              <option value="price">by price</option>
+            </select>
+            </div>
+            <br><br><br><br>
+            <ul class="drinks">
+              <li ng-repeat="drink in drinks | filter:query | orderBy:orderProp" style="line-style-type:none">
+                <h2>{{drink.name}}</h2>
+                
+                <a href="{{drink.video}}"><img ng-src="{{drink.image}}" style="width:200px;height:175px;">
+                </a>
+                <br>
+                <br>
+                <p><b>{{drink.ingredients}}</b></p>
+                <br>
+                <p>{{drink.description}}</p>
+                <p>$ {{drink.price}}</p>
+                <img src="http://www.pd4pic.com/images/line-ornamental-english-ornament-divider.png" style="width:25%;">
+              </li>
+            </ul>
+            <audio loop controls>
+              <source src="https://ia801006.us.archive.org/19/items/ThomasFatsWaller-01-10/FatsWaller-AThousandDreamsOfYou.mp3" type="audio/mpeg">
+              <source src="https://ia801006.us.archive.org/19/items/ThomasFatsWaller-01-10/FatsWaller-AThousandDreamsOfYou.ogg" type="audio/ogg">
+                  Your browser does not support the audio element.
+            </audio>
+            <div class="fats">
+              <h6>courtesy of Fats Waller</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+  </body>
+
+</html>
